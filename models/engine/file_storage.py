@@ -55,6 +55,6 @@ class FileStorage:
         """Deletes obj from FileStorage.__objects dict if it’s inside"""
         if obj is not None:
             delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
-            del FileStorage.__objects[delkey]
+            del self.__objects[delkey]
             self.save()
         pass
