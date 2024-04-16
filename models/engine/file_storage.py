@@ -56,5 +56,5 @@ class FileStorage:
         if obj and obj.__class__.__name__ in FileStorage.classes:
             delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
             del FileStorage.__objects[delkey]
-            self.save()
+            FileStorage.save()
         pass
