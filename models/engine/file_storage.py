@@ -22,8 +22,9 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        if cls and str(cls) in FileStorage.classes:
-            return FileStorage.classes[str(cls)]
+        if cls:
+            if str(cls) in FileStorage.classes:
+                return FileStorage.classes[str(cls)]
         return FileStorage.__objects
 
     def new(self, obj):
@@ -53,8 +54,9 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deletes obj from FileStorage.__objects dict if it’s inside"""
-        if obj and obj.__class__.__name__ in FileStorage.classes:
-            delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
-            del FileStorage.__objects[delkey]
-        else:
+        if obj:
+            if obj.__class__.__name__ in FileStorage.classes:
+                delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
+                del FileStorage.__objects[delkey]
             pass
+        pass
