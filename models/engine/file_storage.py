@@ -22,7 +22,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        if cls and cls in FileStorage.classes:
+        if cls and str(cls) in FileStorage.classes:
             return FileStorage.classes[str(cls)]
         return FileStorage.__objects
 
@@ -56,3 +56,5 @@ class FileStorage:
         if obj and obj.__class__.__name__ in FileStorage.classes:
             delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
             del FileStorage.__objects[delkey]
+        else:
+            pass
