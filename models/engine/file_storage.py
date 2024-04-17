@@ -22,6 +22,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
+        """
         if not cls:
             return self.__objects
         elif type(cls) == str:
@@ -34,9 +35,8 @@ class FileStorage:
         if not cls:
             return self.__objects
         if cls and str(cls) in FileStorage.classes:
-            return FileStor.classes[str(cls)]
+            return FileStorage.classes[str(cls)]
         return FileStorage.__objects
-        """
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
