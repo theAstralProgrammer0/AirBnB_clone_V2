@@ -34,9 +34,9 @@ class FileStorage:
         """
         if not cls:
             return self.__objects
-        if cls and str(cls) in FileStorage.classes:
+        if str(cls) in FileStorage.classes:
             return FileStorage.classes[str(cls)]
-        return FileStorage.__objects
+
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
