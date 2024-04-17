@@ -34,8 +34,13 @@ class FileStorage:
         """
         if not cls:
             return self.__objects
-        if str(cls) in FileStorage.classes:
-            return FileStorage.classes[str(cls)]
+        elif type(cls) == str:
+            return {key: val for key, val in self.__objects.items()
+                             if val.__class__.__name__ == cls}
+        else:
+            return {key: val for key, val in self.__objects.items()
+                             if val.__class__ == cls}
+            
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
