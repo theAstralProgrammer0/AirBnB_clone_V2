@@ -4,10 +4,15 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
+from os import getenv
 
 t_fmt_str = '%Y-%m-%dT%H:%M:%S.%f'
 
-Base = declarative_base()
+storage_type = getenv('HBNB_TYPE_STORAGE')
+if storage_type == 'db':
+    Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
