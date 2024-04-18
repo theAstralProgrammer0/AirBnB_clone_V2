@@ -63,14 +63,23 @@ class BaseModel:
 
     def to_dict(self):
         """Convert instance into dict format"""
-        dictionary = {}
-        dictionary.update(self.__dict__)
-        dictionary.update({'__class__':
-                          (str(type(self)).split('.')[-1]).split('\'')[0]})
-        dictionary['created_at'] = self.created_at.isoformat()
-        dictionary['updated_at'] = self.updated_at.isoformat()
-        dictionary.pop('_sa_instance_state', None)
-        return dictionary
+        new_dict = self.__dict__.copy()
+        if "created_at" in new_dict:
+            new_dict["created_at"] = new_dict["created_at"].isoformat()
+        if "updated_at" in new_dict:
+            new_dict["updated_at"] = new_dict["updated_at"].isoformat()
+        if '_password' in new_dict:
+            new_dict['password'] = new_dict['_password']
+            new_dict.pop('_password', None)
+        if 'amenities' in new_dict:
+            new_dict.pop('amenities', None)
+        if 'reviews' in new_dict:
+            new_dict.pop('reviews', None)
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict.pop('_sa_instance_state', None)
+        if not save_to_disk:
+            new_dict.pop('password', None)
+        return new_dict
 
     def delete(self):
         """Deletes the current instance from storage via its delete method"""
