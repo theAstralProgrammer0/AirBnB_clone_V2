@@ -22,6 +22,7 @@ class State(BaseModel, Base):
         name = ""
 
     def __init__(self, *args, **kwargs):
+        """Initializes the state"""
         super().__init__(*args, **kwargs)
 
 
@@ -29,8 +30,12 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """getter attribute that returns the list of City instances
-               
             """
             city_values = models.storage.all('City').values()
+            list_city = []
+            for city in values_city:
+                if city.state_id == self.id:
+                    list_city.append(city)
+            return list_city
 
-            return [city for city in city_values if city.state_id == self.id]
+            # return [city for city in city_values if city.state_id == self.id]
