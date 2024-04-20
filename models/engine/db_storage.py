@@ -12,6 +12,14 @@ from models.review import Review
 from models.place import Place
 from models.user import User
 
+str_to_class = {
+                'User': User,
+                'Place': Place,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Review': Review
+                }
 
 class DBStorage:
     """This the dbstorage class"""
@@ -25,15 +33,6 @@ class DBStorage:
     __host = getenv('HBNB_MYSQL_HOST')
     __db = getenv('HBNB_MYSQL_DB')
 
-    str_to_class = {
-                    'BaseModel': BaseModel,
-                    'User': User,
-                    'Place': Place,
-                    'State': State,
-                    'City': City,
-                    'Amenity': Amenity,
-                    'Review': Review
-                    }
 
     @classmethod
     def make_url(cls):
@@ -70,6 +69,7 @@ class DBStorage:
                 objs[key] = obj
         else:
             for cls in str_to_class.values():
+                print("cls is {}".format(cls))
                 for obj in self.__session.query(cls):
                     key = "{}.{}".format(obj.__class__.__name__, obj.id)
                     objs[key] = obj
