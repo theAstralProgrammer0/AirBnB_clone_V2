@@ -21,6 +21,7 @@ str_to_class = {
                 'Review': Review
                 }
 
+
 class DBStorage:
     """This the dbstorage class"""
     __engine = None
@@ -32,7 +33,6 @@ class DBStorage:
     __pwd = getenv('HBNB_MYSQL_PWD')
     __host = getenv('HBNB_MYSQL_HOST')
     __db = getenv('HBNB_MYSQL_DB')
-
 
     @classmethod
     def make_url(cls):
@@ -49,7 +49,6 @@ class DBStorage:
         """Initializes the database instance"""
         engine = create_engine(DBStorage.make_url(), pool_pre_ping=True)
         self.__engine = engine
-        
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
 
@@ -59,7 +58,7 @@ class DBStorage:
             self.reload()
 
         objs = {}
-        if type(cls) == str:
+        if type(cls) is str:
             cls = str_to_class.get(cls, None)
 
         if cls:
@@ -76,7 +75,6 @@ class DBStorage:
 
         return objs
 
- 
     def new(self, obj):
         """Creates a new instance of a class in the database"""
         self.__session.add(obj)
@@ -97,6 +95,5 @@ class DBStorage:
         """This method reloads the objects from the database"""
         SessionFactory = sessionmaker(bind=self.__engine,
                                       expire_on_commit=False)
-        
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(SessionFactory)

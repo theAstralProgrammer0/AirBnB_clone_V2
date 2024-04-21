@@ -5,6 +5,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
+
 class State(BaseModel, Base):
     """ State class """
     if (getenv('HBNB_TYPE_STORAGE') == 'db'):
@@ -24,7 +25,6 @@ class State(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Initializes the state"""
         super().__init__(*args, **kwargs)
-
 
     if (getenv('HBNB_TYPE_STORAGE') != 'db'):
         @property

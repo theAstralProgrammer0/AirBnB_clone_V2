@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" holds class Place"""
+"""Contains the Place class"""
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
@@ -22,7 +22,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
 
 
 class Place(BaseModel, Base):
-    """Representation of Place """
+    """Describes Place class"""
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = 'places'
         city_id = Column(String(60),

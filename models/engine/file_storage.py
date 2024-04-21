@@ -24,13 +24,12 @@ class FileStorage:
         """Returns a dictionary of models currently in storage"""
         if not cls:
             return self.__objects
-        elif type(cls) == str:
+        elif type(cls) is str:
             return {key: val for key, val in self.__objects.items()
-                             if val.__class__.__name__ == cls}
+                    if val.__class__.__name__ == cls}
         else:
             return {key: val for key, val in self.__objects.items()
-                             if val.__class__ == cls}
-            
+                    if val.__class__ == cls}
 
     def new(self, obj):
         """Adds new object to storage dictionary"""

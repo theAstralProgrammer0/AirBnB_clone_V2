@@ -6,7 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, ForeignKey
 
 
-
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     if (getenv('HBNB_TYPE_STORAGE') == 'db'):
@@ -26,4 +25,3 @@ class City(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
