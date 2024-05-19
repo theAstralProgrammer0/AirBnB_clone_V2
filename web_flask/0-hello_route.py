@@ -4,8 +4,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route('/', strict_slashes=False)
 def hello_hbnh():
+    """This is the home endpoint"""
     return 'Hello HBNB!'
 
 
