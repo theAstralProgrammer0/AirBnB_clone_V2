@@ -33,6 +33,7 @@ def c(text):
     return shlx(text, '_', 'C ')
 
 
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python(text='is cool'):
     """This is the python endpoint function"""
