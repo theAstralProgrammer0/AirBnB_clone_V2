@@ -9,7 +9,7 @@ def shlx(txt, delim=' ', prefix='', suffix=''):
     lexer = shlex(txt)
     lexer.whitespace += delim
     words = list(lexer)
-    return prefix + ' '.join(words)
+    return prefix + ' '.join(words) + suffix
 
 
 app = Flask(__name__)

@@ -4,12 +4,12 @@ from flask import Flask
 from shlex import shlex
 
 
-def shlx(txt, delim=' ', prefix=''):
+def shlx(txt, delim=' ', prefix='', suffix=''):
     """This function splits strings and prefixes or suffixes strings"""
     lexer = shlex(txt)
     lexer.whitespace += delim
     words = list(lexer)
-    return prefix + ' '.join(words)
+    return prefix + ' '.join(words) + suffix
 
 
 app = Flask(__name__)
