@@ -42,7 +42,7 @@ def python(text='is cool'):
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """This is the number endpoint function"""
-    return str(n) + " is a number" if isinstance(n, int) else None
+    return str(n) + " is a number"
 
 
 if __name__ == "__main__":
