@@ -4,7 +4,7 @@ from flask import Flask
 from shlex import shlex
 
 
-def shlx(txt, delim=' ', prefix=''):
+def shlx(txt, delim=' ', prefix='', suffix=''):
     """This function splits strings and prefixes or suffixes strings"""
     lexer = shlex(txt)
     lexer.whitespace += delim
@@ -37,6 +37,13 @@ def c(text):
 def python(text='is cool'):
     """This is the python endpoint function"""
     return shlx(text, '_', 'Python ')
+
+
+@app.route('/number/<int:n>', strict_slashes=False)
+def number(n):
+    """This is the number endpoint function"""
+    return (n ? type(n) is int : pass)
+
 
 
 if __name__ == "__main__":
