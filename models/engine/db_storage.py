@@ -97,3 +97,7 @@ class DBStorage:
                                       expire_on_commit=False)
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(SessionFactory)
+
+    def close(self):
+        """This method disposes the current database session"""
+        self.__session.remove()

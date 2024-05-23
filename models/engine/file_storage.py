@@ -62,3 +62,7 @@ class FileStorage:
             delkey = "{}.{}".format(obj.__class__.__name__, obj.id)
             del self.__objects[delkey]
             self.save()
+
+    def close(self):
+        """Deserializes a JSON file to objects"""
+        self.reload()
